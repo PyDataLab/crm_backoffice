@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
+    'users',
+    'accounts',
+    'customers',
+    'products',
+    'ads',
+    'leads',
+    'contracts',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +59,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'crm_backoffice.urls'
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -62,6 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'core.context_processors.user_role',
             ],
         },
     },
@@ -75,8 +88,12 @@ WSGI_APPLICATION = 'crm_backoffice.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'crm_backoffice',       # Имя базы данных
+        'USER': 'crm_admin',     # Имя пользователя
+        'PASSWORD': 'A!@)4DB!UgW;A3L',  # Пароль
+        'HOST': 'localhost',          # Хост, например '127.0.0.1'
+        'PORT': '5432',               # Порт PostgreSQL
     }
 }
 
@@ -115,7 +132,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
