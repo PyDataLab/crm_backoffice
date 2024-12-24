@@ -16,10 +16,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Customer',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')), # noqa: E501
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('lead', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='customer', to='leads.lead')),
+                ('lead', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='customer', to='leads.lead')), # noqa: E501
             ],
         ),
     ]
