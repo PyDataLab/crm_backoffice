@@ -12,7 +12,7 @@ def login_view(request):
             login(request, user)
             return redirect('index')  # Убедитесь, что маршрут 'index' доступен
         else:
-            return render(request, 'accounts/login.html', {'form': form, 'errors': form.errors})
+            return render(request, 'accounts/login.html', {'form': form, 'errors': form.errors}) # noqa: E501
 
     else:
         form = AuthenticationForm()

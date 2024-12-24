@@ -1,5 +1,12 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
+from django.views.generic import (
+    ListView,
+    CreateView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+    TemplateView
+)
 from .models import Advertisement
 
 class AdListView(ListView):
@@ -36,8 +43,21 @@ class AdStatisticView(TemplateView):
         context = super().get_context_data(**kwargs)
         ads = Advertisement.objects.all()
         for ad in ads:
-            ad.leads_count = ad.product.leads.count() if hasattr(ad.product, 'leads') else 0
-            ad.customers_count = ad.product.customers.count() if hasattr(ad.product, 'customers') else 0
-            ad.profit = ad.budget / ad.leads_count if ad.leads_count else None
+            ad.leads_count = (
+                ad.product.leads.count()
+                if hasattr(ad.product, 'leads')
+                else 0
+            )
+            ad.customers_count = (
+                ad.product.customers.count()
+                if hasattr(ad.product, 'customers')
+                else 0
+            )
+            ad.profit = (
+                ad.budget / ad.leads_count
+                if ad.leads_count
+                else None
+            )
+
         context['ads'] = ads
         return context

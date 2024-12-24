@@ -8,5 +8,5 @@ urlpatterns = [
     path('new/', views.CustomerCreateView.as_view(), name='customer-create'),
     path('<int:pk>/', views.CustomerDetailView.as_view(), name='customer-detail'),
     path('<int:pk>/edit/', views.CustomerUpdateView.as_view(), name='customer-edit'),
-    path('<int:pk>/delete/', views.CustomerDeleteView.as_view(), name='customer-delete'),
+    path('<int:pk>/delete/', views.CustomerDeleteView.as_view(), name='customer-delete'), # noqa: E501
 ]
